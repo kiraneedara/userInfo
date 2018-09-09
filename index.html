@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv=X-UA-Compatible>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User Info Dashboard</title>
+<link rel="stylesheet" href="./css/app.css" />
+<link rel="stylesheet" href="./css/library/bootstrap.min.css" />
+<script type="text/javascript" src="./js/angular/angular.min.js"></script>
+<script type="text/javascript" src="./js/angular/angular-route.js"></script>
+<link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+<script type="text/javascript" src="./app.js"></script>
+<script src="./app/user-info/user-info.controller.js"></script>
+<script src="./app/user-info/user-info.service.js"></script>
+
+</head>
+<body ng-app="userApp" ng-controller = 'userInfoController'>
+
+	<div class="container">
+		<button class="btn button" ng-click="getData()" >Click here to get user data</button>
+		<div ng-show="loading">Loading...</span></div> <!--To display loader icon -->
+		<table class="table table-striped table-bordered table-responsive" ng-show="dispTable">
+			<thead>
+				<tr>
+					<th class = "pointer" ng-click = "sortData('id')">
+					Id <div ng-class="addClass('id')"></div>
+					</th>
+					<th>Title</th>
+					<th>Body</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in data| orderBy:orderByField:reverseSort">
+					<td><span ng-bind="user.id"></span></td>
+					<td><span ng-bind="user.title"></span></td>
+					<td><span ng-bind="user.body"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+
+
+</html>
